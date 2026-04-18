@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>경력기술서 | 파라스파라 서울</title>
+  <style>
+    :root {
+      --green-dark: #2d4a3e;
+      --green-mid: #4a7c6a;
+      --green-light: #e8f0ec;
+      --gold: #c9a84c;
+      --text: #1e1e1e;
+      --text-muted: #555;
+      --border: #d0dcd6;
+      --bg: #f9fbfa;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Serif KR', 'Malgun Gothic', Georgia, serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.85;
+      font-size: 15px;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 48px auto;
+      padding: 0 24px 80px;
+    }
+
+    /* Header */
+    .header {
+      border-top: 4px solid var(--green-dark);
+      border-bottom: 1px solid var(--border);
+      padding: 36px 0 28px;
+      margin-bottom: 48px;
+    }
+
+    .header-badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--green-dark);
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+
+    .header-meta {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Section */
+    section {
+      margin-bottom: 52px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 24px;
+    }
+
+    /* Summary card */
+    .summary-card {
+      background: var(--green-dark);
+      color: #fff;
+      border-radius: 8px;
+      padding: 22px 28px;
+      font-size: 14.5px;
+      line-height: 1.9;
+    }
+
+    /* Competency list */
+    .competency-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .competency-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px 18px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .competency-list li::before {
+      content: '●';
+      color: var(--green-mid);
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 10px;
+    }
+
+    /* Resort info */
+    .resort-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 18px;
+    }
+
+    .tag {
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .resort-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.9;
+    }
+
+    /* Facility grid */
+    .facility-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .facility-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .facility-card h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .facility-card h4 .icon {
+      font-size: 18px;
+    }
+
+    .facility-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    /* Operations */
+    .ops-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .ops-list li {
+      font-size: 14px;
+      padding-left: 18px;
+      position: relative;
+      color: var(--text);
+    }
+
+    .ops-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--green-mid);
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 36px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -26px;
+      top: 8px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green-mid);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px var(--green-mid);
+    }
+
+    .timeline-item:last-child::before {
+      background: var(--gold);
+      box-shadow: 0 0 0 2px var(--gold);
+    }
+
+    .timeline-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--green-mid);
+      margin-bottom: 4px;
+    }
+
+    .timeline-item:last-child .timeline-label {
+      color: var(--gold);
+    }
+
+    .timeline-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 10px;
+    }
+
+    .timeline-body {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+
+    .timeline-tasks {
+      list-style: none;
+      display: grid;
+      gap: 6px;
+    }
+
+    .timeline-tasks li {
+      font-size: 13.5px;
+      padding: 8px 14px;
+      background: var(--green-light);
+      border-radius: 5px;
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .timeline-tasks li::before {
+      content: '›';
+      position: absolute;
+      left: 10px;
+      color: var(--green-mid);
+      font-weight: 700;
+    }
+
+    .timeline-tasks .sub-item {
+      margin-top: 4px;
+      margin-left: 16px;
+      background: #fff;
+      border: 1px solid var(--border);
+    }
+
+    /* Footer summary */
+    .final-summary {
+      background: var(--green-light);
+      border-left: 4px solid var(--green-dark);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      font-size: 14.5px;
+      line-height: 1.9;
+      color: var(--text);
+    }
+
+    @media (max-width: 600px) {
+      .facility-grid {
+        grid-template-columns: 1fr;
+      }
+      .page {
+        margin: 24px auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-badge">Career Profile</div>
+      <h1>경력기술서</h1>
+      <div class="header-meta">
+        (주)정상북한산리조트 · 세일즈·마케팅팀&nbsp;&nbsp;|&nbsp;&nbsp;2019 – 2025&nbsp;&nbsp;|&nbsp;&nbsp;서울 강북구 우이동
+      </div>
+    </header>
+
+    <!-- One-line summary -->
+    <section>
+      <div class="section-title">핵심 요약</div>
+      <div class="summary-card">
+        서울 도심 내 자연환경을 기반으로 한 복합 리조트에서 호텔과 회원제 콘도를 아우르는 세일즈·마케팅 전략 및 체류형 경험 설계를 수행
+      </div>
+    </section>
+
+    <!-- Core Competencies -->
+    <section>
+      <div class="section-title">세일즈·마케팅 핵심 역량</div>
+      <ul class="competency-list">
+        <li>호텔 및 콘도 복합 리조트 마케팅·브랜딩 전략 수립 경험</li>
+        <li>북한산 자연환경 기반 리조트 공간 동선을 활용한 고객 경험 설계 및 공간 활용 기획 (소셜 라운지, 뮤직룸, 내부 인테리어 등)</li>
+        <li>프리미엄 럭셔리 콘도 판매 촉진 전략 수립 경험 (고객 타겟팅, 콘도동 컨셉 설계, 온·오프라인 홍보 전략 포함)</li>
+        <li>사계절 테마형 콘텐츠 및 SNS 홍보 기획을 통한 고객 경험 고도화 (예: 겨울–산타 방문 크리스마스 패키지, 가을–콘도 멤버십 트레킹 및 북한산 조망 요가, 여름–풀사이드 영화 상영, 봄–우디 플레이트 다이닝 패키지 등)</li>
+        <li>호텔 부대시설(연회·웨딩·F&amp;B) 연계 상품 기획 및 수익화 전략 수립 경험</li>
+        <li>고객 경험(VOC) 및 온라인 리뷰 분석 기반 서비스 개선 경험</li>
+        <li>모기업 삼정기업(부산)–사업장 파라스파라(서울) 간 운영 전략 전달 및 실행 상황 보고</li>
+        <li>호텔 인적자원관리 및 직원 서비스 품질 교육 매뉴얼 기획·개선 참여 경험</li>
+      </ul>
+    </section>
+
+    <!-- Company Info -->
+    <section>
+      <div class="section-title">회사 및 사업장 소개</div>
+      <h3 style="font-size:17px; color:var(--green-dark); margin-bottom:10px;">파라스파라 서울 | ㈜정상북한산리조트</h3>
+      <div class="resort-tags">
+        <span class="tag"># Green in 서울도심</span>
+        <span class="tag"># Luxury</span>
+        <span class="tag"># Condo</span>
+        <span class="tag"># Hotel</span>
+      </div>
+      <p class="resort-desc">
+        파라스파라 서울은 서울 강북구 우이동 북한산 국립공원 자락에 위치한 5성급 복합 리조트로, 서울 도심에서 자연과 럭셔리를 동시에 경험할 수 있는 공간이다. 약 8만㎡ 부지에 숙박동 14개 동, 334객실과 문화·집회시설 1개 동으로 구성되었으며, 북한산 국립공원 경관 보존 조건에 따라 건물 층수가 제한된 환경에서 조성되었다. 도심에서 접근 가능한 대규모 자연형 리조트로는 국내에서 드문 사례이며, 호텔과 회원제 콘도가 결합된 복합형 구조를 갖는다.
+      </p>
+    </section>
+
+    <!-- Facilities -->
+    <section>
+      <div class="section-title">시설 개요</div>
+      <div class="facility-grid">
+        <div class="facility-card">
+          <h4><span class="icon">🏨</span> 호텔 구역</h4>
+          <p>3개 동, 110객실<br>일반 투숙객 대상 숙박 시설로, 공식 홈페이지 및 OTA 채널을 통해 예약 가능.<br><br>객실: 캐빈, 팀버, 팀버 주니어, 프리미어 팀버 스위트</p>
+        </div>
+        <div class="facility-card">
+          <h4><span class="icon">🌲</span> 콘도 구역</h4>
+          <p>11개 동, 224객실<br>프라나 오너스(Prana Owners) 회원 전용 프라이빗 공간.<br><br>가든 하우스 · 파크 하우스 · 스카이 하우스<br>(약 58평 – 156평, 분양가 2억 – 12억 원 수준)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Operations -->
+    <section>
+      <div class="section-title">운영 및 공간 특성</div>
+      <ul class="ops-list">
+        <li>운영은 소유 법인인 ㈜정상북한산리조트가 총괄하고, 조선호텔앤리조트가 브랜드 프리미엄 및 서비스 운영을 담당하는 이원화 구조</li>
+        <li>회원 전담 컨시어지팀 운영을 통해 개인 회원의 프라이빗 서비스, 법인 회원의 비즈니스 미팅, 워크숍 등 다양한 목적의 체류 경험 제공</li>
+        <li>인피니티풀(109동 크라우드릿지 옥상)은 콘도 회원 전용 시설로, 북한산 능선을 파노라마로 조망할 수 있는 대표 공간</li>
+      </ul>
+      <div style="margin-top: 24px; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.12);">
+        <video
+          controls
+          style="width: 100%; display: block;">
+          <source src="video/anto_paraspara_video.mp4" type="video/mp4" />
+          브라우저가 동영상을 지원하지 않습니다.
+        </video>
+      </div>
+      <p style="margin-top: 9px; font-size: 12px; color: #999; line-height: 1.6;">
+        출처: YouTube – ANTO 안토 &nbsp;·&nbsp;
+        <a href="https://youtu.be/jWBgiaqGRHE?si=Lum8vX-z8CkYVp05"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="color: #aaa; text-decoration: underline; text-underline-offset: 2px;">View original video</a>
+      </p>
+    </section>
+
+    <!-- Timeline -->
+    <section>
+      <div class="section-title">시기별 경력</div>
+      <div class="timeline">
+
+        <!-- 2019–2021 -->
+        <div class="timeline-item">
+          <div class="timeline-label">2019 – 2021.08</div>
+          <div class="timeline-title">프리오픈 단계</div>
+          <p class="timeline-body">
+            프리오픈 단계부터 세일즈·마케팅팀에 합류하여 브랜드 및 영업 기반 구축에 참여하였다. 공간의 물리적 특성과 입지적 강점을 고객 관점에서 재해석하고, 핵심 타겟 고객에게 전달 가능한 세일즈 언어로 구조화하는 작업에 집중하였다.
+          </p>
+          <ul class="timeline-tasks">
+            <li>호텔 및 콘도 상품 출시 전 시장 조사 및 경쟁사 분석 수행</li>
+            <li>시설 네이밍 및 브랜드 포지셔닝 방향 제안</li>
+            <li>국내 우수 호텔·리조트 인재풀 확보 및 채용 선발 참여</li>
+            <li>콘도동 구분에 따른 세일즈 메시지 정비</li>
+            <li>초기 영업 채널 및 고객 접점 기반 구축</li>
+            <li>고객 유형별 리조트 동선 체계화</li>
+          </ul>
+        </div>
+
+        <!-- 2021–2022 -->
+        <div class="timeline-item">
+          <div class="timeline-label">2021.08 – 2022</div>
+          <div class="timeline-title">오픈 초기 운영 안정화</div>
+          <p class="timeline-body">
+            로비에서 호텔 투숙객과 콘도 회원이 동일 공간을 공유하는 구조로 인해 발생한 고객 경험 혼재 문제를 해소하고, 고객 유형별 서비스 흐름을 재설계하는 데 참여하였다.
+          </p>
+          <ul class="timeline-tasks">
+            <li>로비 내 콘도 및 호텔 고객 응대 구조 분리 방향 제안</li>
+            <li>회원 전용 고객 경험 및 럭셔리 공간 경험 가치 재정립
+              <ul style="list-style:none; margin-top:6px; display:grid; gap:4px;">
+                <li class="timeline-tasks sub-item">입장 제한형 소셜 라운지, 인피니티풀, 프라이빗 공간 운영 구조 제안</li>
+              </ul>
+            </li>
+            <li>프라이빗 리조트 경험에 부합하는 고객 서비스 흐름 설계</li>
+            <li>콘도동 분양 확대를 위한 세일즈 및 마케팅 전략 수립</li>
+            <li>호텔·콘도·레스토랑·사우나 등 부대시설을 고객 유형별로 차별화하여 운영할 수 있도록 방향 정비</li>
+          </ul>
+        </div>
+
+        <!-- 2022–2023 -->
+        <div class="timeline-item">
+          <div class="timeline-label">2022 – 2023</div>
+          <div class="timeline-title">상품 및 수익 구조 확장</div>
+          <p class="timeline-body">
+            브랜드 인지도가 형성된 이후, 숙박 중심 판매를 넘어 리조트의 공간과 자연환경을 활용한 신규 상품 기획에 참여하였다.
+          </p>
+          <ul class="timeline-tasks">
+            <li>북한산 경관을 활용한 옥상 웨딩 상품 및 가족 파티 기획 제안</li>
+            <li>산악 활동을 선호하는 콘도 기업인 콘텐츠 개발 (엄홍길 대장 동행 북한산 트레킹, 트레킹–스파 연계 기획)</li>
+            <li>소규모 프리미엄 MICE 상품 개발 및 법인 영업 수행</li>
+            <li>'우디 플레이트(Woody Plate)' 중심 지역 고객 대상 F&amp;B 프로그램 기획</li>
+          </ul>
+        </div>
+
+        <!-- 2022–2024 -->
+        <div class="timeline-item">
+          <div class="timeline-label">2022 – 2024</div>
+          <div class="timeline-title">시즌 콘텐츠 개발 &amp; 고객 경험 고도화</div>
+          <p class="timeline-body">
+            계절성과 자연환경을 기반으로, 콘텐츠·프로그램, 공간·감성 연출, 디지털 고객 접점을 통합한 고객 경험 중심 콘텐츠 기획에 참여하였다.
+          </p>
+          <ul class="timeline-tasks">
+            <li>계절형 콘텐츠 기획
+              <ul style="list-style:none; margin-top:6px; display:grid; gap:4px;">
+                <li class="timeline-tasks sub-item">'북한산을 찾아온 산타' 크리스마스 패키지 — 산타가 객실 직접 방문, 선물 전달하는 참여형 고객 경험 설계</li>
+                <li class="timeline-tasks sub-item">풀사이드 영화 상영 등 체류형 프로그램 운영</li>
+              </ul>
+            </li>
+            <li>시즌별 공간 연출 및 F&amp;B 연계 기획
+              <ul style="list-style:none; margin-top:6px; display:grid; gap:4px;">
+                <li class="timeline-tasks sub-item">크리스마스 은행나무 트리, 쿠키, 케이크, 스파클링 와인 등 감성 요소 결합</li>
+              </ul>
+            </li>
+            <li>웹사이트 콘텐츠 구조 개선 제안 — 360도 뷰 도입 및 호텔·콘도 랜딩페이지 분리 설계</li>
+            <li>비수기 객실 가동률 제고 전략 수립 — 겨울 시즌 패키지 및 프로모션 기획</li>
+          </ul>
+        </div>
+
+        <!-- 2024 -->
+        <div class="timeline-item">
+          <div class="timeline-label">2024</div>
+          <div class="timeline-title">패키지 고도화 및 서비스 품질 개선</div>
+          <p class="timeline-body">
+            프리미엄 콘도 고객 경험을 강화하고 내부 서비스 품질 개선 방향을 수립하는 데 참여하였다. 시즌별 고객 경험 요소를 정교화하고, 비수기 수요 대응 전략과 서비스 운영 기준 정비를 병행하였다.
+          </p>
+          <ul class="timeline-tasks">
+            <li>콘도 분양 판매 전략 재수립(스노우볼링 효과) 및 타겟 고객 세분화 기반 판매 방향 정비</li>
+            <li>프리미엄 콘도동 고객 경험 강화를 위한 시즌별 공간 연출 및 프로모션 기획 (아트워크, 럭셔리 소품, 조경, 시설 관리 등 공간 요소 통합 설계)</li>
+            <li>직원 서비스 품질 교육 방향 검토 및 운영 기준 제안</li>
+            <li>웰니스 프리미엄 리조트 벤치마킹 (파크로쉬 리조트 앤 웰니스)</li>
+            <li>고객 온라인 리뷰 분석 및 개선 방안 제안</li>
+          </ul>
+        </div>
+
+        <!-- 2025 -->
+        <div class="timeline-item">
+          <div class="timeline-label">2025</div>
+          <div class="timeline-title">퇴사 및 연구 집중</div>
+          <p class="timeline-body">
+            2025년 8월, ㈜정상북한산리조트의 지분 100%를 한화호텔앤드리조트가 인수하여 자회사로 편입하였으며, 법인명은 유지된 가운데 대외 브랜드명은 파라스파라(Paraspara)에서 안토(ANTO)로 변경되었다. 소유권 이전 시점에 퇴사하였으며, 이후 나의 색깔을 가장 잘 드러낼 수 있는 영역이 연구임을 확인하고 연구에 집중하고 있다.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Final Summary -->
+    <section>
+      <div class="section-title">최종 요약</div>
+      <div class="final-summary">
+        북한산 국립공원 자락의 복합 리조트에서 프리오픈부터 운영 안정화, 공간 기반 상품 기획, 시즌 콘텐츠 개발, 서비스 품질 개선까지 세일즈·마케팅 전반에 참여하며, 숙박 중심 상품을 경험 기반 리조트 비즈니스로 확장하는 과정을 경험하였습니다. 이러한 경험은 호텔 및 관광 분야에서 연구와 실무를 연결하는 데 기초가 될 것으로 생각합니다.
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

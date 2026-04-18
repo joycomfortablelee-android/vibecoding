@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이유안 — 관광문화콘텐츠 연구자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --paper: #f8f4ee;
+    --accent: #8b4513;
+    --accent2: #c8a96e;
+    --muted: #7a6e62;
+    --border: #d6cfc4;
+    --section-bg: #f2ece3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  header {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 10vw;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(139,69,19,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(200,169,110,0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    font-weight: 700;
+    line-height: 0.95;
+    color: var(--ink);
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.4s forwards;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    margin-top: 2.5rem;
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--muted);
+    max-width: 500px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.6s forwards;
+  }
+
+  .hero-meta {
+    margin-top: 3rem;
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.8s forwards;
+  }
+
+  .meta-item {
+    border-left: 2px solid var(--accent2);
+    padding-left: 1rem;
+  }
+
+  .meta-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .meta-value {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 3rem;
+    left: 10vw;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 1.2s forwards;
+  }
+
+  .scroll-line {
+    width: 60px;
+    height: 1px;
+    background: var(--accent2);
+    animation: lineGrow 1.2s ease 1.5s both;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--ink);
+    color: var(--paper);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+    padding: 2.5rem 0;
+  }
+
+  .stat-item {
+    padding: 1rem 2rem;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: var(--accent2);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-desc {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: rgba(248,244,238,0.6);
+    margin-top: 0.4rem;
+  }
+
+  /* SECTION */
+  section {
+    padding: 7rem 10vw;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:nth-child(even) {
+    background: var(--section-bg);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: var(--border);
+    line-height: 1;
+    font-style: italic;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 600;
+    color: var(--ink);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.3rem;
+  }
+
+  /* PAPER CARD */
+  .paper-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .paper-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(26,20,16,0.1);
+  }
+
+  .paper-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.2rem 0.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .paper-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 0.8rem;
+    color: var(--ink);
+  }
+
+  .paper-journal {
+    font-size: 0.8rem;
+    color: var(--accent2);
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .paper-journal a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent2);
+  }
+
+  .paper-sub {
+    margin-bottom: 1.4rem;
+  }
+
+  .paper-sub-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .paper-sub-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .paper-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .paper-points li {
+    font-size: 0.875rem;
+    color: var(--muted);
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.75;
+  }
+
+  .paper-points li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent2);
+  }
+
+  .paper-points li strong { color: var(--ink); font-weight: 500; }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.7rem;
+    background: var(--section-bg);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    letter-spacing: 0.05em;
+  }
+
+  /* PROJECTS */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    padding: 2rem;
+    border: 1px solid var(--border);
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+
+  .project-card:hover { transform: translateY(-3px); }
+
+  .project-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+
+  .project-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: var(--ink);
+  }
+
+  .project-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+  /* TABLE */
+  .plan-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  .plan-table th {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1rem 1.2rem;
+    text-align: left;
+    font-family: 'Noto Serif KR', serif;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+
+  .plan-table td {
+    padding: 0.9rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .plan-table tr:hover td { background: rgba(139,69,19,0.03); color: var(--ink); }
+
+  .plan-table td:first-child {
+    color: var(--accent);
+    font-family: 'Noto Serif KR', serif;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* GOAL BOXES */
+  .goal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .goal-box {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .goal-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--accent2);
+    display: block;
+    line-height: 1;
+  }
+
+  .goal-unit { font-size: 0.8rem; letter-spacing: 0.1em; color: rgba(248,244,238,0.5); margin-top: 0.3rem; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 2rem; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .tl-item { position: relative; padding-bottom: 2.5rem; }
+
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -2.35rem; top: 0.35rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--paper);
+  }
+
+  .tl-year { font-family: 'Playfair Display', serif; font-size: 0.8rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+  .tl-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+
+  /* CAREER */
+  .career-block {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    padding: 1.5rem 2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .career-period { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+  .career-title { font-family: 'Noto Serif KR', serif; font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 0.5rem; }
+  .career-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.8; }
+
+  /* REF LIST */
+  .ref-list { display: flex; flex-direction: column; gap: 1.2rem; }
+
+  .ref-item {
+    padding: 1.2rem 1.5rem;
+    border-left: 3px solid var(--accent2);
+    background: #fff;
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  .ref-item a { color: var(--accent); text-decoration: none; font-size: 0.8rem; display: inline-block; margin-top: 0.3rem; border-bottom: 1px solid var(--accent2); }
+
+  .ref-badge { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 0.15rem 0.5rem; margin-bottom: 0.5rem; display: inline-block; }
+
+  .kci-box {
+    margin-top: 2.5rem;
+    padding: 1.5rem 2rem;
+    border: 1px dashed var(--accent2);
+    background: rgba(200,169,110,0.05);
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .kci-box a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent2); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 10vw;
+    text-align: center;
+  }
+
+  footer p { font-size: 0.85rem; color: rgba(248,244,238,0.5); line-height: 1.8; }
+
+  footer .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--accent2);
+    display: block;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes lineGrow {
+    from { width: 0; }
+    to { width: 60px; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    section { padding: 4rem 6vw; }
+    header { padding: 60px 6vw; }
+    .plan-table { display: block; overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header>
+  <p class="hero-label">연구 현황 및 계획서 · 2026.09.01. 부</p>
+  <h1>이<em>유</em>안</h1>
+  <p class="hero-sub">관광문화콘텐츠 분야 연구자<br>경기대학교 관광문화대학 초빙 지원</p>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <div class="meta-label">접수번호</div>
+      <div class="meta-value">2C-0001</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">초빙분야</div>
+      <div class="meta-value">관광문화콘텐츠학과</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">소속</div>
+      <div class="meta-value">관광 문화 대학</div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    scroll
+  </div>
+</header>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-num">17</span>
+    <div class="stat-desc">국내논문 (KCI)</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">5</span>
+    <div class="stat-desc">국외논문 (SSCI)</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">18</span>
+    <div class="stat-desc">학술발표 (국내+국외)</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">4+</span>
+    <div class="stat-desc">2026 상반기 투고 예정</div>
+  </div>
+</div>
+
+<!-- ① 대표업적 -->
+<section>
+  <div class="section-header reveal">
+    <div class="section-num">①</div>
+    <h2 class="section-title">대표업적</h2>
+  </div>
+
+  <!-- 논문 1 -->
+  <div class="paper-card reveal">
+    <span class="paper-badge">KCI · 융합관광콘텐츠연구 · 2026</span>
+    <h3 class="paper-title">토픽모델링과 내용분석을 통한 '문화콘텐츠 관광' 연구동향과 산업 발전 방향 탐색</h3>
+    <p class="paper-journal">융합관광콘텐츠연구 · <a href="https://doi.org/10.22556/jctc.2026.12.1.5" target="_blank">https://doi.org/10.22556/jctc.2026.12.1.5</a></p>
+
+    <div class="paper-sub">
+      <div class="paper-sub-title">우수성 — "20년 문화콘텐츠 관광 학술연구 지식 구조와 교육·산업 연계에 대한 질문"</div>
+      <ul class="paper-points">
+        <li><strong>메타연구 공백 보완:</strong> 문화콘텐츠 관광 관련 학술논문(2004~2025년) 185편을 분석하여, 개방성·비정형성·다학제성으로 분산된 연구 흐름을 통합적으로 이해할 수 있는 관점을 제시하였다.</li>
+        <li><strong>관광 맥락의 문화콘텐츠 지식 정교화:</strong> 문화콘텐츠 연구의 응용 하위 영역으로서 관광을 다루는 기존 연구를 넘어, 관광과 문화콘텐츠가 연계된 지식을 이해할 수 있는 관점을 제시하였다.</li>
+        <li><strong>네 가지 주제의 통합적 분석 틀:</strong> 여가·생활문화, 감각적 콘텐츠 경험, 역사·디지털 융합, 문학·종교 및 지역 서비스의 네 가지 구조와 이를 바탕으로 연구 간 분절성을 보완하였다.</li>
+        <li><strong>연구·교육·산업 연계성 강화:</strong> 교육과정 구성 유목과 산업 및 정책적 시사점이 있다.</li>
+      </ul>
+    </div>
+
+    <div class="paper-sub">
+      <div class="paper-sub-title">독창성 — "문화관광 및 콘텐츠 관광과 구별되는 문화콘텐츠 관광 융합적 연구 흐름에 대한 실증적 접근"</div>
+      <ul class="paper-points">
+        <li><strong>문화콘텐츠-관광 연구 독립적 설정:</strong> 특별 유형 관광의 범주에서 기존의 문화관광 또는 콘텐츠관광의 일부가 아닌 하나의 융복합 연구 영역으로 설정하여 분석을 수행하였다.</li>
+        <li><strong>감마값 활용 토픽 논문 해석:</strong> 토픽모델링 결과 도출된 키워드를 바탕으로, 감마값을 참고하여 각 토픽의 의미를 개별 연구와 연계해 해석하였다.</li>
+        <li><strong>다층적 연구 구조의 실증적 제시:</strong> 토픽 간 중첩성과 다층적 관계를 분석하여 문화콘텐츠·관광·기술·지역정책이 결합된 연구 흐름을 구조적으로 제시하였다.</li>
+      </ul>
+    </div>
+
+    <div class="paper-sub">
+      <div class="paper-sub-title">전공 적합성 및 확장 가능성</div>
+      <ul class="paper-points">
+        <li>관광문화콘텐츠학과의 직접적 관련성과 적합성이 있으며, 2026년 현재 문화도시 정책 연구와 '문화콘텐츠 관광'의 개념화(conceptualization) 및 심화 연구를 진행 중이다.</li>
+        <li>섬관광 연구동향–해양문화콘텐츠, 소수민족관광 연구동향–문화자원 보전 및 개발을 통한 지역 발전, 소극장·서비스 품질–도시콘텐츠 연구와 연계성을 기반으로 학문적 일관성과 확장성을 뒷받침한다.</li>
+      </ul>
+    </div>
+
+    <div class="tag-row">
+      <span class="tag">토픽모델링</span>
+      <span class="tag">메타연구</span>
+      <span class="tag">문화콘텐츠 관광</span>
+      <span class="tag">지식 구조</span>
+      <span class="tag">연구동향</span>
+    </div>
+  </div>
+
+  <!-- 논문 2 -->
+  <div class="paper-card reveal">
+    <span class="paper-badge">SSCI · International Journal of Tourism Research · 2025</span>
+    <h3 class="paper-title">Travel Alienation and Coping Strategies of International Students: A Qualitative Exploration of the Role of Social Support</h3>
+    <p class="paper-journal">International Journal of Tourism Research · <a href="https://doi.org/10.1002/jtr.70100" target="_blank">https://doi.org/10.1002/jtr.70100</a></p>
+
+    <div class="paper-sub">
+      <div class="paper-sub-title">우수성 — "국제학생 관광 경험의 소외 구조 규명 및 외래 관광객 불만족 이해 틀 제시"</div>
+      <ul class="paper-points">
+        <li>국제학생을 관광 맥락에서 문화적·제도적 제약을 경험하는 '소저너(sojourner)'로 설정하고, 여행 과정에서 나타나는 소외를 <strong>권력, 문화적 규범, 정보, 사회적 관계, 문화, 자아</strong>의 여섯 가지 유형으로 체계화하였다.</li>
+        <li>스트레스–대처 이론을 적용하여 관광 경험에서의 소외를 인지적 평가와 적응 과정으로 설명하고, 관광학과 사회심리학 간 이론적 연결을 확장하였다.</li>
+        <li>다국어 정보 제공, 사회적 교류 프로그램, 문화적 포용성 강화 등 실천적 개선 방향을 제안하였다.</li>
+      </ul>
+    </div>
+
+    <div class="paper-sub">
+      <div class="paper-sub-title">독창성</div>
+      <ul class="paper-points">
+        <li><strong>소외 개념의 관광 맥락 확장:</strong> 철학·사회학 기반의 소외 개념을 국제학생이라는 소수집단에 적용하여 다차원 특성을 설명하였다.</li>
+        <li>심층 인터뷰와 주제분석을 통해 국제학생 관광 경험 중 소외 유형과 대처 전략을 도출하였다.</li>
+        <li><strong>사회적 지원의 유형화:</strong> 감정적·정보적·도구적 지원이 소외와 대처 사이에서 완충 역할을 수행하는 관계를 밝혔다.</li>
+      </ul>
+    </div>
+
+    <div class="paper-sub">
+      <div class="paper-sub-title">전공 적합성 및 확장 가능성</div>
+      <ul class="paper-points">
+        <li>글로컬 대학 정책과 Study Korea 300K 등 외국인 유학생 유치 확대 흐름 속에서, '소외–대처–지원' 구조로 해석함으로써 문화·관광·교육을 연결하는 연구 주제를 제시한다.</li>
+        <li>소수민족 관광 연구(연구업적 5)와의 연계성을 가지며, 럭셔리 크루즈 소비자의 권력 인식 연구(Service Business, 2019) 및 중심성을 활용한 관광지 네트워크 연구(JDMM, 2017)와 연속성을 형성한다.</li>
+        <li>향후 외국인 대상 문화관광 해설(정보 소외)과 관광커뮤니케이션 연구, 지역 기반 국제관광 활성화와 문화관광 정책연구로 확장 가능하다.</li>
+      </ul>
+    </div>
+
+    <div class="tag-row">
+      <span class="tag">국제학생</span>
+      <span class="tag">소외 이론</span>
+      <span class="tag">사회적 지원</span>
+      <span class="tag">질적 연구</span>
+      <span class="tag">스트레스–대처</span>
+    </div>
+  </div>
+
+  <!-- 논문 3 -->
+  <div class="paper-card reveal">
+    <span class="paper-badge">SSCI · International Journal of Tourism Research · 2025</span>
+    <h3 class="paper-title">A Scale to Measure Destination Social Responsibility Perceived by Residents and Government</h3>
+    <p class="paper-journal">International Journal of Tourism Research · <a href="https://doi.org/10.1002/jtr.70084" target="_blank">https://doi.org/10.1002/jtr.70084</a></p>
+
+    <div class="paper-sub">
+      <div class="paper-sub-title">우수성</div>
+      <ul class="paper-points">
+        <li>관광목적지가 얼마나 책임 있게 운영되고 있는지를 막연한 인식이 아니라, <strong>거버넌스와 협력, 경제·환경적 측면</strong>을 포함한 기준을 통해 구체적으로 측정할 수 있는 척도를 개발하였다.</li>
+        <li>관광지 사회적 책임(DSR)은 기업의 사회적 책임과 구별되는 개념으로, 실행가능한 지속가능성 개념(actionable sustainability)을 관광 맥락에서 확장한 집단적 책임 개념이다.</li>
+      </ul>
+    </div>
+
+    <div class="paper-sub">
+      <div class="paper-sub-title">독창성</div>
+      <ul class="paper-points">
+        <li><strong>주민·정부·실무자 집단을 포함한 다이해관계자 통합:</strong> 관광목적지의 사회적 책임을 특정 집단의 인식이 아니라 다양한 이해관계자의 관점에서 통합적으로 바라보고, 이를 하나의 측정가능한 구조로 제시하였다.</li>
+      </ul>
+    </div>
+
+    <div class="paper-sub">
+      <div class="paper-sub-title">전공 적합성 및 확장 가능성</div>
+      <ul class="paper-points">
+        <li>관광지 사회적 책임은 이해관계자 간 공유된 가치와 규범을 기반으로 형성되며, 반복적 실천을 통해 내재화된다는 점에서 문화적 성격을 가진다.</li>
+        <li>지속가능 관광, 문화관광 거버넌스, 문화관광 정책, 자원관리 계획과의 이론적·실무적 연계성이 있으며, 문화자원 관리와 콘텐츠 개발을 기반으로 지역 지속가능성 연구로 확장될 수 있다.</li>
+      </ul>
+    </div>
+
+    <div class="tag-row">
+      <span class="tag">관광목적지</span>
+      <span class="tag">사회적 책임</span>
+      <span class="tag">척도 개발</span>
+      <span class="tag">지속가능 관광</span>
+      <span class="tag">거버넌스</span>
+    </div>
+  </div>
+</section>
+
+<!-- ② 투고 준비 현황 -->
+<section>
+  <div class="section-header reveal">
+    <div class="section-num">②</div>
+    <h2 class="section-title">투고 준비 현황</h2>
+  </div>
+
+  <p class="reveal" style="font-size:0.9rem; color:var(--muted); margin-bottom:2.5rem; max-width:700px; line-height:1.9;">
+    현재 수정 후 제출(Revise-and-Resubmit) 또는 심사 중(Under Review)인 논문은 없으나, 2026년 4월 현재 상반기 내 다수의 논문 투고를 준비하고 있습니다.
+  </p>
+
+  <div class="timeline reveal">
+    <div class="tl-item">
+      <div class="tl-year">2주 이내 투고 예정</div>
+      <div class="tl-desc">어촌관광 관련 연구 — 약 25페이지 이상 작성 완료, 참고문헌 정리 후 해양관광학 분야 학술지 투고 예정</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">3주 이내 투고 가능</div>
+      <div class="tl-desc">2025년 11월 Glosith 학회 발표 영문 풀페이퍼 2편 (포스터 + 구두발표) — 편집·수정 후 투고 가능 상태</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">집필 중</div>
+      <div class="tl-desc">웰니스 관광 경험 연구 — 약 20페이지 분량으로 현재 집필 진행 중</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2026 상반기 목표</div>
+      <div class="tl-desc">최소 4편 이상 논문 투고 계획</div>
+    </div>
+  </div>
+</section>
+
+<!-- ③ 프로젝트 -->
+<section>
+  <div class="section-header reveal">
+    <div class="section-num">③</div>
+    <h2 class="section-title">최근 3년간 수행 프로젝트</h2>
+  </div>
+  <div class="project-grid">
+    <div class="project-card reveal">
+      <div class="project-icon">🤖</div>
+      <div class="project-name">AI 기반 영상·디지털 마케팅 교육 연계 프로젝트</div>
+      <div class="project-desc">디지털 마케팅 실제를 강의하기 위해 온라인 판매 사업자 등록을 수행하였으며, 인공지능 영상 제작을 강의하며 공유숙박업 관련 사업 운영에 대한 실무 중심의 교육 콘텐츠를 개발·운영하였습니다.</div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">🗺️</div>
+      <div class="project-name">밀양시 지역 관광 활성화 프로젝트</div>
+      <div class="project-desc">2025년 밀양시 관광포럼에서 여행 스토리텔링 주제를 발제하였으며, 밀양시 관광의 별 선정위원과 한옥 위탁 운영 업체 선정 외부 위원으로 활동하며 로컬 크리에이터와 함께 관련 연구 자료를 수집하고 있습니다.</div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">🎨</div>
+      <div class="project-name">문화·예술 공간 기반 지역재생 연구 모임</div>
+      <div class="project-desc">2026년부터 아트컨시어지 여행사와 함께 문화·예술 공간과 지역재생, VIP 아트 투어 프로그램 개발을 주제로 스터디 및 실무 연계를 수행하고, 이를 바탕으로 저서 출판을 기획하고 있습니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ④ 특허 및 수상 -->
+<section>
+  <div class="section-header reveal">
+    <div class="section-num">④</div>
+    <h2 class="section-title">특허 및 수상</h2>
+  </div>
+  <div class="paper-card reveal" style="max-width:520px;">
+    <span class="paper-badge">수상 · 2026</span>
+    <h3 class="paper-title">우수교원 표창장</h3>
+    <p style="font-size:0.88rem; color:var(--muted); margin-top:0.8rem; line-height:1.8;">
+      신라대학교 — 2026년 1학기, 2024년부터의 강의평가 우수 실적에 대한 인정<br>
+      <span style="font-size:0.8rem; color:var(--accent2);">담당 교과목: 웰니스 관광, 축제, 세계여행지리, 창업론 등 5개 과목 (2024~현재)</span>
+    </p>
+  </div>
+</section>
+
+<!-- ⑤ 향후 연구계획 -->
+<section>
+  <div class="section-header reveal">
+    <div class="section-num">⑤</div>
+    <h2 class="section-title">향후 연구계획</h2>
+  </div>
+
+  <div class="goal-grid reveal">
+    <div class="goal-box">
+      <span class="goal-num">2</span>
+      <div class="goal-unit">SSCI · 2026년 말 목표</div>
+    </div>
+    <div class="goal-box">
+      <span class="goal-num">5</span>
+      <div class="goal-unit">KCI · 2026년 말 목표</div>
+    </div>
+    <div class="goal-box">
+      <span class="goal-num">4+</span>
+      <div class="goal-unit">문화도시 연구 설계 완료</div>
+    </div>
+  </div>
+
+  <p class="reveal" style="font-size:0.9rem; color:var(--muted); margin-bottom:3rem; max-width:800px; line-height:1.9;">
+    연구 주제는 문화도시 및 지역 heritage 자원을 활용한 콘텐츠 개발로 확장되고 있으며, <em>자원에서 정책 및 전략으로 이어지는 관광지 관리 관점(from resources to policy and strategies in destination management)</em>에서 연구를 수행하고 있습니다. 또한 AI 기반 문화관광 영상 콘텐츠와 AI 활용 실무 트렌드와 연계된 연구를 진행하고 있습니다.
+  </p>
+
+  <div class="reveal" style="overflow-x:auto; margin-bottom: 5rem;">
+    <table class="plan-table">
+      <thead>
+        <tr>
+          <th>세부분야 (NRF 분류)</th>
+          <th>향후 연구계획</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>관광정책·행정·역사</td><td>문화도시 정책 및 사업·전략 연구 수행 중</td></tr>
+        <tr><td>관광경영 (호텔·외식)</td><td>호텔·도시 문화공간 (문화·예술·엔터테인먼트 결합)</td></tr>
+        <tr><td>관광자원·개발·계획</td><td>학위논문 후속 연구 — 지속가능성과 역량·인적 자원개발</td></tr>
+        <tr><td>관광마케팅·상품개발</td><td>K-컬처·K-푸드 관련 연구</td></tr>
+        <tr><td>컨벤션(MICE)·이벤트</td><td>축제·공연·전시 등 문화 이벤트 관광 기획 및 운영</td></tr>
+        <tr><td>관광·레저·국제관광</td><td>방한 외래 관광객의 지역 관광 유입 활성화 연구</td></tr>
+        <tr><td>관광행동·심리</td><td>AI 관광 영상콘텐츠 개발 및 지역 자원 연계</td></tr>
+        <tr><td>관광문화·통역</td><td>템플·한옥 스테이 — 관광 해설 연구</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 연구역량 배경 -->
+  <h3 class="section-title reveal" style="font-size:1.3rem; margin-bottom:2rem;">연구역량 및 경력 배경</h3>
+
+  <div class="career-block reveal">
+    <div class="career-period">2014 — 2018 · 박사과정</div>
+    <div class="career-title">부산대학교 박사과정 수료</div>
+    <div class="career-desc">2014년 석사과정 초기부터 연구설계, 아이디어 나눔, 출판 과정 전반에 높은 관심을 가지고 연구를 수행. 박사과정 동안 <strong>SSCI 3편, KCI 12편</strong>의 논문을 모두 주저자로 게재하며 연구 역량을 구축하였습니다.</div>
+  </div>
+
+  <div class="career-block reveal">
+    <div class="career-period">2016 — 2019 · 국가연구지원</div>
+    <div class="career-title">Global Ph.D. Fellowship Program 수혜 (NRF-2016H1A2A1909165)</div>
+    <div class="career-desc">국가 연구지원 기반 하에 안정적으로 연구에 몰입할 수 있었던 환경에서 연구역량을 심화하였습니다.</div>
+  </div>
+
+  <div class="career-block reveal">
+    <div class="career-period">2019 — 2025 · 실무 경력</div>
+    <div class="career-title">파라스파라 호텔(현 안토, 정상북한산 리조트) — 마케팅·경영 컨설팅</div>
+    <div class="career-desc">북한산 소재 호텔 마케팅 부서에서 근무하며 모기업 삼정기업 건설회사 경영진을 대상으로 관광·호텔 분야 경영 컨설팅과 마케팅 업무를 수행하였습니다. 럭셔리 공간 설계 및 친환경·문화 기반 운영 전략에 대한 브랜딩 경험을 축적하였습니다.</div>
+  </div>
+
+  <div class="career-block reveal">
+    <div class="career-period">2022 · 박사학위 취득</div>
+    <div class="career-title">University of the Sunshine Coast (호주)</div>
+    <div class="career-desc">2018년 부산대학교 박사과정 수료 이후, 2022년 호주 소재 University of the Sunshine Coast에서 박사학위를 취득하였습니다.</div>
+  </div>
+
+  <div class="career-block reveal">
+    <div class="career-period">2024 — 현재</div>
+    <div class="career-title">신라대학교 — 시간강사</div>
+    <div class="career-desc">웰니스 관광, 축제, 세계여행지리, 창업론 등 5개 교과목 담당. 2024년 하반기부터 연구를 본격화하여 2026년 2월 기준 최근 1년 <strong>SSCI 2편, KCI 5편</strong>의 연구 성과를 확보하였습니다.</div>
+  </div>
+
+  <!-- 3년 이전 해외연구실적 -->
+  <h3 class="section-title reveal" style="font-size:1.3rem; margin-top:4rem; margin-bottom:2rem;">제출 범위 외 해외 연구실적 (3년 이전)</h3>
+
+  <div class="ref-list reveal">
+    <div class="ref-item">
+      <span class="ref-badge">SSCI · 2018</span><br>
+      Lee, Y., &amp; Kim, I. (2018). Investigating key innovation capabilities fostering visitors' mindfulness and its consequences in the food exposition environment. <em>Journal of Travel &amp; Tourism Marketing</em>, 35(6), 803–818.<br>
+      <a href="https://doi.org/10.1080/10548408.2017.1421496" target="_blank">https://doi.org/10.1080/10548408.2017.1421496</a>
+    </div>
+    <div class="ref-item">
+      <span class="ref-badge">SSCI · 2018 · NRF 수혜논문</span><br>
+      Lee, Y., &amp; Kim, I. (2018). Change and stability in shopping tourists' destination networks: The case of Seoul in Korea. <em>Journal of Destination Marketing &amp; Management</em>, 9, 267–278.<br>
+      <a href="https://doi.org/10.1016/j.jdmm.2018.02.004" target="_blank">https://doi.org/10.1016/j.jdmm.2018.02.004</a>
+    </div>
+    <div class="ref-item">
+      <span class="ref-badge">SSCI · 2019</span><br>
+      Lee, Y., &amp; Kim, I. (2019). A value co-creation model in brand tribes: The effect of luxury cruise consumers' power perception. <em>Service Business: An International Journal</em>, 13(1), 129–152.<br>
+      <a href="https://doi.org/10.1007/s11628-018-0373-x" target="_blank">https://doi.org/10.1007/s11628-018-0373-x</a>
+    </div>
+  </div>
+
+  <div class="kci-box reveal">
+    그 밖의 KCI 논문은 한국연구재단 포털에서 확인하실 수 있습니다.<br>
+    <a href="https://www.kci.go.kr/kciportal/main.kci" target="_blank">https://www.kci.go.kr/kciportal/main.kci</a> 에서 <strong>"이유안"</strong>으로 검색
+  </div>
+</section>
+
+<!-- AWARD -->
+<style>
+  .award-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .award-card {
+    width: 33%;
+    min-width: 220px;
+    flex: 1;
+    background: #f9f6f2;
+    border: 1px solid #ddd;
+    text-align: center;
+    padding-bottom: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .award-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(26,20,16,0.18);
+  }
+  .award-img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-bottom: 2px solid #8b5a2b;
+    transition: transform 0.4s ease;
+  }
+  .award-card:hover .award-img {
+    transform: scale(1.04);
+  }
+  .award-date {
+    color: #8b5a2b;
+    margin: 15px 0 8px;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+  }
+  .award-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #1a1410;
+  }
+  .award-desc {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    padding: 0 16px;
+  }
+</style>
+
+<section style="padding: 6rem 10vw;">
+  <div class="section-header reveal">
+    <div class="section-num">★</div>
+    <h2 class="section-title">수상</h2>
+  </div>
+
+  <div class="award-container reveal" style="margin-top:2.5rem;">
+
+    <!-- 전체 수상 사진 -->
+    <div class="award-card">
+      <img class="award-img" src="image/award.jpg" alt="수상 사진">
+      <div class="award-date">수상 기념</div>
+      <div class="award-title">수상 사진</div>
+    </div>
+
+    <!-- 석사 우수논문상 -->
+    <div class="award-card">
+      <img class="award-img" src="image/masters_thesis_award_pnu_2015.jpg" alt="Master's Best Thesis Award (2015)">
+      <div class="award-date">2015 · 05 · 27</div>
+      <div class="award-title">우수논문상</div>
+      <div class="award-desc">부산대학교 대학원 관광컨벤션학과 석사과정<br>창의력 있는 연구논문 발표<br>부산대학교 총장 수여</div>
+    </div>
+
+    <!-- 박사 학술상패 -->
+    <div class="award-card">
+      <img class="award-img" src="image/phd_award_18_05_23.jpg.jpg" alt="PhD Academic Award (2018)">
+      <div class="award-date">2018 · 05 · 23</div>
+      <div class="award-title">학술상패</div>
+      <div class="award-desc">부산대학교 대학원 관광컨벤션학과 박사과정<br>창의력 있는 연구논문 발표<br>PUSAN NATIONAL UNIVERSITY 총장 수여</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Lee Yu-an</span>
+  <p>
+    연구자이자 교육자로서의 성실성과 열정을 바탕으로<br>
+    지식의 바다에서 학문적 여정에 함께할 수 있기를 앙망(仰望)합니다.<br><br>
+    경기대학교 관광문화대학 · 관광문화콘텐츠학과 · 접수번호 2C-0001
+  </p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
