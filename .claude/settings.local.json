@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git push *)",
+      "Bash(xargs ls *)",
+      "Bash(sort -k5 -rn)",
+      "Bash(git rm *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(gh auth *)",
+      "Bash(git config *)",
+      "Bash(gh repo *)",
+      "Bash(git remote *)",
+      "Bash(vercel --version)",
+      "Bash(npm install *)",
+      "Bash(vercel *)",
+      "Read(//c/Users/PC/.local/share/com.vercel.cli/**)",
+      "Read(//c/Users/PC/AppData/Roaming/com.vercel.cli/**)",
+      "Bash(git -C /c/Users/PC/vibecoding status --porcelain)",
+      "Bash(git -C /c/Users/PC/vibecoding add vercel.json .gitignore)",
+      "Bash(git -C /c/Users/PC/vibecoding commit -m \"Add vercel.json to route / to index_integrated.html\")",
+      "Bash(git -C /c/Users/PC/vibecoding push origin main)"
+    ]
+  }
+}
