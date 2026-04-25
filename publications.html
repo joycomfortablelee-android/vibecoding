@@ -6,6 +6,124 @@
   <title>Publications — Yuan Lee</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .shelf-section { margin-bottom: 56px; }
+    .shelf-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .shelf-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .shelf-count {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 20px;
+    }
+    .book-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: 4px 8px 8px 4px;
+      overflow: hidden;
+      box-shadow: -4px 4px 12px rgba(0,0,0,0.12), 2px 2px 6px rgba(0,0,0,0.06);
+      text-decoration: none;
+      transition: transform 0.22s, box-shadow 0.22s;
+      min-height: 220px;
+      position: relative;
+      cursor: pointer;
+    }
+    .book-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: -6px 10px 24px rgba(0,0,0,0.18), 2px 4px 10px rgba(0,0,0,0.08);
+    }
+    .book-spine {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 8px;
+      background: rgba(0,0,0,0.2);
+    }
+    .book-inner {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 16px 14px 14px 18px;
+    }
+    .book-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 2px 8px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 10px;
+      align-self: flex-start;
+    }
+    .book-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      line-height: 1.65;
+      flex: 1;
+      word-break: keep-all;
+    }
+    .book-meta {
+      margin-top: 10px;
+      font-size: 10px;
+      line-height: 1.5;
+      opacity: 0.75;
+    }
+    .book-year {
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 4px;
+      opacity: 0.6;
+    }
+    .book-dl {
+      font-size: 10px;
+      margin-top: 8px;
+      opacity: 0.5;
+      font-style: italic;
+    }
+
+    /* SSCI — 딥네이비 계열 */
+    .book-ssci { background: linear-gradient(135deg, #1a2a4a 0%, #243860 100%); color: #e8dfc8; }
+    .book-ssci .book-badge { background: rgba(212,175,55,0.25); color: #d4af37; border: 1px solid rgba(212,175,55,0.4); }
+
+    /* KCI 최근 3년 — 다크 그린 */
+    .book-kci-recent { background: linear-gradient(135deg, #1a3a2a 0%, #224433 100%); color: #ddeedd; }
+    .book-kci-recent .book-badge { background: rgba(100,200,120,0.2); color: #7ec98a; border: 1px solid rgba(100,200,120,0.35); }
+
+    /* KCI 전체 — 다크 버건디 */
+    .book-kci { background: linear-gradient(135deg, #3a1a2a 0%, #4a2235 100%); color: #f0dde6; }
+    .book-kci .book-badge { background: rgba(200,120,140,0.2); color: #e89aaa; border: 1px solid rgba(200,120,140,0.35); }
+
+    .stats-chips { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+    .stat-chip {
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    .chip-ssci { background: #1a2a4a; color: #d4af37; }
+    .chip-kci { background: #1a3a2a; color: #7ec98a; }
+    .chip-kci2 { background: #3a1a2a; color: #e89aaa; }
+
+    .conf-section { margin-top: 56px; }
+  </style>
 </head>
 <body>
 <nav id="site-nav">
@@ -30,99 +148,297 @@
     <p class="sec-eyebrow reveal">Scholarship</p>
     <h2 class="sec-title reveal">Publications</h2>
 
-    <div class="pub-section-label reveal">SSCI / ABDC A — 최신 논문</div>
-
-    <div class="pub-item reveal">
-      <span class="pub-badge badge-kci">KCI · 2026</span>
-      <h4>토픽모델링과 내용분석을 통한 '문화콘텐츠 관광' 연구동향과 산업 발전 방향 탐색</h4>
-      <p class="pub-meta">융합관광콘텐츠연구 · 2026</p>
-      <a href="https://doi.org/10.22556/jctc.2026.12.1.5" target="_blank" rel="noopener">https://doi.org/10.22556/jctc.2026.12.1.5</a>
+    <div class="stats-chips reveal">
+      <span class="stat-chip chip-ssci">SSCI 5편</span>
+      <span class="stat-chip chip-kci">KCI 12편 (최근 3년)</span>
+      <span class="stat-chip chip-kci2">KCI 5편 (최근 1년)</span>
     </div>
 
-    <div class="pub-item reveal">
-      <span class="pub-badge badge-ssci">SSCI · 2025</span>
-      <h4>Travel Alienation and Coping Strategies of International Students: A Qualitative Exploration of the Role of Social Support</h4>
-      <p class="pub-meta">International Journal of Tourism Research · 2025</p>
-      <a href="https://doi.org/10.1002/jtr.70100" target="_blank" rel="noopener">https://doi.org/10.1002/jtr.70100</a>
+    <!-- SSCI -->
+    <div class="shelf-section reveal">
+      <p class="shelf-label">International Journal</p>
+      <h3 class="shelf-title">SSCI 논문</h3>
+      <p class="shelf-count">5편 · 표지를 클릭하면 논문을 다운로드할 수 있습니다</p>
+      <div class="book-grid">
+
+        <a class="book-card book-ssci" href="https://doi.org/10.1002/jtr.70100" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">SSCI · 2025</span>
+            <p class="book-title">Travel Alienation and Coping Strategies of International Students</p>
+            <p class="book-meta">International Journal of Tourism Research</p>
+            <p class="book-year">2025</p>
+          </div>
+        </a>
+
+        <a class="book-card book-ssci" href="https://doi.org/10.1002/jtr.70084" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">SSCI · ABDC A · 2025</span>
+            <p class="book-title">A Scale to Measure Destination Social Responsibility Perceived by Residents and Government</p>
+            <p class="book-meta">International Journal of Tourism Research</p>
+            <p class="book-year">2025</p>
+          </div>
+        </a>
+
+        <a class="book-card book-ssci" href="https://doi.org/10.1007/s11628-018-0373-x" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">SSCI · Q1 · 2019</span>
+            <p class="book-title">A Value Co-Creation Model in Brand Tribes: Luxury Cruise Consumers' Power Perception</p>
+            <p class="book-meta">Service Business: An International Journal</p>
+            <p class="book-year">2019</p>
+          </div>
+        </a>
+
+        <a class="book-card book-ssci" href="https://doi.org/10.1016/j.jdmm.2018.02.004" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">SSCI · 2018</span>
+            <p class="book-title">Change and Stability in Shopping Tourists' Destination Networks: Seoul, Korea</p>
+            <p class="book-meta">Journal of Destination Marketing &amp; Management</p>
+            <p class="book-year">2018</p>
+          </div>
+        </a>
+
+        <a class="book-card book-ssci" href="https://doi.org/10.1080/10548408.2017.1421496" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">SSCI · 2018</span>
+            <p class="book-title">Innovation Capabilities Fostering Visitors' Mindfulness in the Food Exposition Environment</p>
+            <p class="book-meta">Journal of Travel and Tourism Marketing</p>
+            <p class="book-year">2018</p>
+          </div>
+        </a>
+
+      </div>
     </div>
 
-    <div class="pub-item reveal">
-      <span class="pub-badge badge-ssci">SSCI · ABDC A · 2025</span>
-      <h4>A Scale to Measure Destination Social Responsibility Perceived by Residents and Government</h4>
-      <p class="pub-meta">International Journal of Tourism Research · DOI: 10.1002/jtr.70084</p>
-      <a href="https://doi.org/10.1002/jtr.70084" target="_blank" rel="noopener">https://doi.org/10.1002/jtr.70084</a>
+    <!-- KCI 최근 3년 -->
+    <div class="shelf-section reveal">
+      <p class="shelf-label">National Journal</p>
+      <h3 class="shelf-title">KCI 논문 — 최근 3년</h3>
+      <p class="shelf-count">12편 · 구글 드라이브 PDF 연결 예정</p>
+      <div class="book-grid">
+
+        <a class="book-card book-kci-recent" href="#" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">KCI · 2026</span>
+            <p class="book-title">토픽모델링과 내용분석을 통한 '문화콘텐츠 관광' 연구동향과 산업 발전 방향 탐색</p>
+            <p class="book-meta">융합관광콘텐츠연구</p>
+            <p class="book-year">2026</p>
+            <p class="book-dl">PDF 준비 중</p>
+          </div>
+        </a>
+
+        <a class="book-card book-kci-recent" href="#" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">KCI · 2026</span>
+            <p class="book-title">LDA 토픽모델링과 네트워크 분석을 통한 소수 민족관광 연구동향분석</p>
+            <p class="book-meta">국제 관광학 저널 중심으로</p>
+            <p class="book-year">2026</p>
+            <p class="book-dl">PDF 준비 중</p>
+          </div>
+        </a>
+
+        <a class="book-card book-kci-recent" href="#" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">KCI · 2026</span>
+            <p class="book-title">섬 관광에 대한 국내 학술 연구 (2001-2025)의 주제 탐색</p>
+            <p class="book-meta">토픽모델링과 내용분석을 통한 연구동향과 정책적 함의</p>
+            <p class="book-year">2026</p>
+            <p class="book-dl">PDF 준비 중</p>
+          </div>
+        </a>
+
+        <a class="book-card book-kci-recent" href="#" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">KCI · 2025</span>
+            <p class="book-title">럭셔리 크루즈 서비스 경험이 감정과 기억에 미치는 영향: 즐거움과 각성 중심으로</p>
+            <p class="book-meta">관광 · 레저 연구</p>
+            <p class="book-year">2025</p>
+            <p class="book-dl">PDF 준비 중</p>
+          </div>
+        </a>
+
+        <a class="book-card book-kci-recent" href="#" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">KCI · 2025</span>
+            <p class="book-title">게임전시회를 통한 브랜드 경험이 방문객의 트랜스포테이션, 전시회 충성도 및 구매의도에 미치는 영향</p>
+            <p class="book-meta">G-star 관람객을 대상으로</p>
+            <p class="book-year">2025</p>
+            <p class="book-dl">PDF 준비 중</p>
+          </div>
+        </a>
+
+        <a class="book-card book-kci-recent" href="#" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">KCI · 2024</span>
+            <p class="book-title">전시회 서비스 품질 지각이 참가자 만족 및 행동 의도에 미치는 영향</p>
+            <p class="book-meta">3차원 서비스 품질 모형 적용</p>
+            <p class="book-year">2024</p>
+            <p class="book-dl">PDF 준비 중</p>
+          </div>
+        </a>
+
+        <a class="book-card book-kci-recent" href="#" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">KCI · 2024</span>
+            <p class="book-title">전시 컨벤션 혜택이 소속감 및 고객 시민 행동에 미치는 영향</p>
+            <p class="book-meta">지스타 전시회 방문객을 중심으로</p>
+            <p class="book-year">2024</p>
+            <p class="book-dl">PDF 준비 중</p>
+          </div>
+        </a>
+
+        <a class="book-card book-kci-recent" href="#" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">KCI · 2024</span>
+            <p class="book-title">전시 컨벤션의 소비 가치가 플로우 및 충성도에 미치는 영향</p>
+            <p class="book-meta">지스타 방문객을 중심으로</p>
+            <p class="book-year">2024</p>
+            <p class="book-dl">PDF 준비 중</p>
+          </div>
+        </a>
+
+        <a class="book-card book-kci-recent" href="#" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">KCI · 2024</span>
+            <p class="book-title">외국인 부동산 투자에 의한 관광개발이 지역주민의 삶의 질 및 관광개발 지지도에 미치는 효과 분석</p>
+            <p class="book-meta">제주지역 주민을 대상으로</p>
+            <p class="book-year">2024</p>
+            <p class="book-dl">PDF 준비 중</p>
+          </div>
+        </a>
+
+        <a class="book-card book-kci-recent" href="#" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">KCI · 2023</span>
+            <p class="book-title">Development of a scale to measure destination social responsibility and co-orientation analysis</p>
+            <p class="book-meta">관광학연구</p>
+            <p class="book-year">2023</p>
+            <p class="book-dl">PDF 준비 중</p>
+          </div>
+        </a>
+
+        <a class="book-card book-kci-recent" href="#" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">KCI · 2023</span>
+            <p class="book-title">관광지 사회적 책임 인식과 지역주민의 관광개발 지지도</p>
+            <p class="book-meta">관광경영연구</p>
+            <p class="book-year">2023</p>
+            <p class="book-dl">PDF 준비 중</p>
+          </div>
+        </a>
+
+        <a class="book-card book-kci-recent" href="#" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">KCI · 2023</span>
+            <p class="book-title">데이터 마이닝에 기반한 관광지 연관성 분석</p>
+            <p class="book-meta">외래관광객의 방한 동기별 공간 특성 비교</p>
+            <p class="book-year">2023</p>
+            <p class="book-dl">PDF 준비 중</p>
+          </div>
+        </a>
+
+      </div>
     </div>
 
-    <div class="pub-section-label reveal">SSCI — 3년 이전 게재</div>
+    <!-- KCI 이전 -->
+    <div class="shelf-section reveal">
+      <p class="shelf-label">National Journal</p>
+      <h3 class="shelf-title">KCI 논문 — 이전</h3>
+      <p class="shelf-count">5편 · 전체 목록은 <a href="https://www.kci.go.kr/kciportal/main.kci" target="_blank" style="color:var(--gold);">kci.go.kr</a>에서 "이유안" 검색</p>
+      <div class="book-grid">
 
-    <div class="pub-item reveal">
-      <span class="pub-badge badge-ssci">SSCI · 2018</span>
-      <h4>Investigating key innovation capabilities fostering visitors' mindfulness and its consequences in the food exposition environment</h4>
-      <p class="pub-meta">Journal of Travel and Tourism Marketing, 35(6), 803–818</p>
-      <a href="https://doi.org/10.1080/10548408.2017.1421496" target="_blank" rel="noopener">DOI →</a>
+        <a class="book-card book-kci" href="#" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">KCI · 2017</span>
+            <p class="book-title">The Impact of Perceived Service Quality on Satisfaction and Behavioral Intentions</p>
+            <p class="book-meta">관광학연구 41(8)</p>
+            <p class="book-year">2017</p>
+          </div>
+        </a>
+
+        <a class="book-card book-kci" href="#" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">KCI · 2017</span>
+            <p class="book-title">The Impact of the Quality of Knowledge via Trust in Members of Online Travel Community</p>
+            <p class="book-meta">관광경영연구 21(6)</p>
+            <p class="book-year">2017</p>
+          </div>
+        </a>
+
+        <a class="book-card book-kci" href="#" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">KCI · 2017</span>
+            <p class="book-title">Examining Destination Networks Formed by Overseas Shopping Tourists' Mobility in Seoul</p>
+            <p class="book-meta">관광경영연구 21(5)</p>
+            <p class="book-year">2017</p>
+          </div>
+        </a>
+
+        <a class="book-card book-kci" href="#" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">KCI · NRF · 2016</span>
+            <p class="book-title">Analyzing Associative Rules of Destination Selections Among Foreign Tourists</p>
+            <p class="book-meta">관광경영연구 20(6)</p>
+            <p class="book-year">2016</p>
+          </div>
+        </a>
+
+        <a class="book-card book-kci" href="#" target="_blank">
+          <div class="book-spine"></div>
+          <div class="book-inner">
+            <span class="book-badge">KCI · 2016</span>
+            <p class="book-title">쇼핑 주목적 방한 외래 관광객 이동 네트워크 분석</p>
+            <p class="book-meta">서울, 경기도, 인천 지역 관광지를 중심으로</p>
+            <p class="book-year">2016</p>
+          </div>
+        </a>
+
+      </div>
     </div>
 
-    <div class="pub-item reveal">
-      <span class="pub-badge badge-ssci">SSCI · 2018 · NRF 수혜</span>
-      <h4>Change and stability in shopping tourists' destination networks: The case of Seoul in Korea</h4>
-      <p class="pub-meta">Journal of Destination Marketing Management, 9, 267–278</p>
-      <a href="https://doi.org/10.1016/j.jdmm.2018.02.004" target="_blank" rel="noopener">DOI →</a>
+    <!-- 학술대회 -->
+    <div class="conf-section reveal">
+      <p class="shelf-label">Conference</p>
+      <h3 class="shelf-title">학술대회 발표</h3>
+      <p class="shelf-count" style="margin-bottom:20px;">18편 이상 (국내 + 국외)</p>
+      <div style="overflow-x:auto;">
+        <table class="conf-table">
+          <thead>
+            <tr><th>#</th><th>논문명</th><th>구분</th><th>장소</th><th>발표</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Qualitative examination of destination social responsibility and its challenges</td><td>International</td><td>Kuala Lumpur, Malaysia</td><td>2019.6</td></tr>
+            <tr><td>2</td><td>Change and stability in shopping tourists' destination networks</td><td>국내</td><td>Incheon, Korea</td><td>2018.11</td></tr>
+            <tr><td>3</td><td>Change and stability in shopping tourists' destination networks ⭐ Best Paper</td><td>International</td><td>Beppu, Japan</td><td>2017.6</td></tr>
+            <tr><td>4</td><td>Examining destination network of foreign shopping tourists</td><td>International</td><td>Ulsan, Korea</td><td>2017.7</td></tr>
+            <tr><td>5</td><td>International students' tourism experience in Korea</td><td>International</td><td>Beppu, Japan</td><td>2017.12</td></tr>
+            <tr><td>6</td><td>Can local people help enhance tourists' destination loyalty?</td><td>International</td><td>London, UK</td><td>2015.8</td></tr>
+            <tr><td>7</td><td>Examining Service Quality and Communication Strategies in Increasing Perceived Innovativeness</td><td>International</td><td>Taipei, Taiwan</td><td>2016.2</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <div class="pub-item reveal">
-      <span class="pub-badge badge-ssci">SSCI · Q1 · 2019</span>
-      <h4>A Value Co-Creation Model in Brand Tribes: The Effect of Luxury Cruise Consumers' Power Perception</h4>
-      <p class="pub-meta">Service Business: An International Journal, 13(1), 129–152</p>
-      <a href="https://doi.org/10.1007/s11628-018-0373-x" target="_blank" rel="noopener">DOI →</a>
-    </div>
-
-    <div class="pub-section-label reveal">KCI 등재 논문 (주요)</div>
-
-    <div class="pub-item reveal">
-      <span class="pub-badge badge-kci">KCI</span>
-      <h4>Lee, Y. &amp; Kim, I. (2017). The Impact of Perceived Service Quality on Satisfaction and Behavioral Intentions.</h4>
-      <p class="pub-meta">관광학연구, 41(8), 155–173.</p>
-    </div>
-
-    <div class="pub-item reveal">
-      <span class="pub-badge badge-kci">KCI</span>
-      <h4>Lee, Y. &amp; Kim, I. (2017). The impact of the quality of knowledge via trust in members of online travel community.</h4>
-      <p class="pub-meta">관광경영연구, 21(6), 123–144.</p>
-    </div>
-
-    <div class="pub-item reveal">
-      <span class="pub-badge badge-kci">KCI</span>
-      <h4>Lee, Y. &amp; Kim, I. (2017). Examining destination networks formed by overseas shopping tourists' mobility in Seoul.</h4>
-      <p class="pub-meta">관광경영연구, 21(5), 175–193.</p>
-    </div>
-
-    <div class="pub-item reveal">
-      <span class="pub-badge badge-kci">KCI · NRF 수혜</span>
-      <h4>Lee, Y. &amp; Kim, I. (2016). Analyzing associative rules of destination selections among foreign tourists.</h4>
-      <p class="pub-meta">관광경영연구, 20(6), 623–642.</p>
-    </div>
-
-    <p style="font-size:13px; color:var(--muted); margin-top:16px; padding:14px 18px; background:var(--paper); border:1px dashed var(--border); border-radius:6px;" class="reveal">
-      그 밖의 KCI 논문은 한국연구재단 포털 <a href="https://www.kci.go.kr/kciportal/main.kci" target="_blank" style="color:var(--blue);">kci.go.kr</a>에서 <strong>"이유안"</strong>으로 검색하실 수 있습니다.
-    </p>
-
-    <div class="pub-section-label reveal" style="margin-top:40px;">학술대회 발표</div>
-    <div style="overflow-x:auto;" class="reveal">
-      <table class="conf-table">
-        <thead>
-          <tr><th>#</th><th>논문명</th><th>구분</th><th>장소</th><th>발표</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>1</td><td>Qualitative examination of destination social responsibility and its challenges</td><td>International</td><td>Kuala Lumpur, Malaysia</td><td>2019.6</td></tr>
-          <tr><td>2</td><td>Change and stability in shopping tourists' destination networks</td><td>국내</td><td>Incheon, Korea</td><td>2018.11</td></tr>
-          <tr><td>3</td><td>Change and stability in shopping tourists' destination networks ⭐ Best Paper</td><td>International</td><td>Beppu, Japan</td><td>2017.6</td></tr>
-          <tr><td>4</td><td>Examining destination network of foreign shopping tourists</td><td>International</td><td>Ulsan, Korea</td><td>2017.7</td></tr>
-          <tr><td>5</td><td>International students' tourism experience in Korea</td><td>International</td><td>Beppu, Japan</td><td>2017.12</td></tr>
-          <tr><td>6</td><td>Can local people help enhance tourists' destination loyalty?</td><td>International</td><td>London, UK</td><td>2015.8</td></tr>
-          <tr><td>7</td><td>Examining Service Quality and Communication Strategies in Increasing Perceived Innovativeness</td><td>International</td><td>Taipei, Taiwan</td><td>2016.2</td></tr>
-        </tbody>
-      </table>
-    </div>
   </div>
 </section>
 </div>
