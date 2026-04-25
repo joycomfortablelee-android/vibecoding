@@ -55,6 +55,19 @@
     }
     .nav-card-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.6; }
     .hero-name-divider { color: var(--gold); font-style: normal; margin: 0 8px; }
+    .hero-research { display: flex; flex-wrap: wrap; gap: 8px; margin: 1.2rem 0 1.6rem; }
+    .research-tag {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 4px 14px;
+    }
+    .research-tag.highlight {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
   </style>
 </head>
 <body>
@@ -81,10 +94,14 @@
   <div class="hero-content">
     <p class="hero-eyebrow">Academic Portfolio · 관광문화콘텐츠 연구자</p>
     <h1 class="hero-name">이유안 <span class="hero-name-divider">|</span> <em>Yuan Lee</em></h1>
-    <p class="hero-tagline">
-      관광 목적지 사회적 책임, 문화콘텐츠 관광, 지속가능 관광을 연구하는<br>
-      학자이자 신라대학교 미래융합학부 초빙교수
-    </p>
+    <p class="hero-tagline">신라대학교 미래융합학부 초빙교수 · 관광문화콘텐츠 연구자</p>
+    <div class="hero-research">
+      <span class="research-tag">관광자원·문화콘텐츠 관광</span>
+      <span class="research-tag">관광지 계획·관리 및 지속가능성</span>
+      <span class="research-tag highlight">DSR · Destination Social Responsibility</span>
+      <span class="research-tag">관광심리</span>
+      <span class="research-tag">관광정보·디지털 관광</span>
+    </div>
     <div class="hero-pills">
       <span class="pill">Ph.D. Tourism · Univ. of the Sunshine Coast</span>
       <span class="pill">신라대학교 초빙교수</span>
